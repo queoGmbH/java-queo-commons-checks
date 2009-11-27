@@ -132,4 +132,24 @@ public class CheckTest {
             //expected
         }
     }
+
+    @Test
+    public void testNotNegativeArgument() {        
+        Check.notNegativeArgument(1, "arg");           
+    }
+    
+    @Test
+    public void testNotNegativeArgument_zero() {        
+        Check.notNegativeArgument(0, "arg");             
+    }
+    
+    @Test
+    public void testNotNegativeArgument_fail() {
+        try {
+            Check.notNegativeArgument(-1, "arg");
+            Assert.fail("Exception expected");
+        } catch (IllegalArgumentException e) {
+            //expected
+        }
+    }
 }
