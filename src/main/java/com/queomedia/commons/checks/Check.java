@@ -316,6 +316,27 @@ public abstract class Check {
             }
         }
     }
+    
+    /**
+     * Not zero or negative.
+     * 
+     * @param value
+     *            the value
+     * @param argumentName
+     *            the argument name
+     */
+    public static void notNegativeArgument(final int value, final String argumentName) {
+        Check.notNullArgument(argumentName, "argumentName");
+        if (value < 0) {
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
+                    + argumentName + " must not negative");
+            if (Check.activeArgumentCheck) {
+                throw illegalArgExc;
+            } else {
+                Check.alternativeFailureAction(illegalArgExc);
+            }
+        }
+    }
 
     /**
      * Checks if is equals.
