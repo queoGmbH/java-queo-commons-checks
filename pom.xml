@@ -4,7 +4,7 @@
 	<groupId>com.queomedia</groupId>
 	<artifactId>queo-commons-checks</artifactId>
 	<name>queo commons check</name>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>0.1.2-SNAPSHOT</version>
 	<description>Common utils to embedde checks like asserts within the code.</description>
 
 	<issueManagement>
@@ -80,12 +80,12 @@
 		<dependency>
 			<groupId>com.queomedia</groupId>
 			<artifactId>queo-commons-equals</artifactId>
-			<version>[0.0.2-SNAPSHOT,)</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.queomedia</groupId>
 			<artifactId>queo-commons-exceptions</artifactId>
-			<version>[0.0.1-SNAPSHOT,)</version>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
