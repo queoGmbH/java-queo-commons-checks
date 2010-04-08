@@ -3,7 +3,7 @@
 	<groupId>com.queomedia</groupId>
 	<artifactId>queo-commons-checks</artifactId>
 	<name>queo commons check</name>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<description>Common utils to embedde checks like asserts within the code.</description>
 
 	<issueManagement>
@@ -12,9 +12,9 @@
 	</issueManagement>
 
 	<scm>
-		<connection>scm:svn:svn://skylla/queo_commons/java/queo-commons-checks/tags/queo-commons-checks-1.0.0</connection>
-		<developerConnection>scm:svn:svn://skylla/queo_commons/java/queo-commons-checks/tags/queo-commons-checks-1.0.0</developerConnection>
-		<url>http://skylla/queo_commons/java/queo-commons-checks/tags/queo-commons-checks-1.0.0</url>
+		<connection>scm:svn:svn://skylla/queo_commons/java/queo-commons-checks/trunk</connection>
+		<developerConnection>scm:svn:svn://skylla/queo_commons/java/queo-commons-checks/trunk</developerConnection>
+		<url>http://skylla/queo_commons/java/queo-commons-checks/trunk</url>
 	</scm>
 	
 	<distributionManagement>
