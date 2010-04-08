@@ -178,6 +178,35 @@ public abstract class Check {
             }
         }
     }
+    
+    /**
+     * Checks for (not) empty Collection argument.
+     * 
+     * @param argument
+     *            the argument
+     * @param argumentName
+     *            the argument name
+     * 
+     * @throws ArgumentNullException
+     *             if the argument is null
+     * @throws IllegalArgumentException
+     *             if the argument is empty
+     */
+    public static void notEmptyArgument(final Collection<?> argument, final String argumentName)
+            throws IllegalArgumentException {
+        Check.notNullArgument(argument, argumentName);
+        Check.notNullArgument(argumentName, "argumentName");
+
+        if (argument.isEmpty()) {
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - String argument "
+                    + argumentName + " must have length");
+            if (Check.activeArgumentCheck) {
+                throw illegalArgExc;
+            } else {
+                Check.alternativeFailureAction(illegalArgExc);
+            }
+        }
+    }
 
     /**
      * Argument instance of.
@@ -274,6 +303,27 @@ public abstract class Check {
             }
         }
     }
+    
+    /**
+     * Not zero.
+     * 
+     * @param value
+     *            the value
+     * @param argumentName
+     *            the argument name
+     */
+    public static void notZeroArgument(final long value, final String argumentName) {
+        Check.notNullArgument(argumentName, "argumentName");
+        if (value == 0) {
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
+                    + argumentName + " must not be zero");
+            if (Check.activeArgumentCheck) {
+                throw illegalArgExc;
+            } else {
+                Check.alternativeFailureAction(illegalArgExc);
+            }
+        }
+    }
 
     /**
      * Not zero or negative.
@@ -284,6 +334,27 @@ public abstract class Check {
      *            the argument name
      */
     public static void notZeroOrNegativeArgument(final int value, final String argumentName) {
+        Check.notNullArgument(argumentName, "argumentName");
+        if (value <= 0) {
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
+                    + argumentName + " must not be zero or negative");
+            if (Check.activeArgumentCheck) {
+                throw illegalArgExc;
+            } else {
+                Check.alternativeFailureAction(illegalArgExc);
+            }
+        }
+    }
+    
+    /**
+     * Not zero or negative.
+     * 
+     * @param value
+     *            the value
+     * @param argumentName
+     *            the argument name
+     */
+    public static void notZeroOrNegativeArgument(final long value, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
         if (value <= 0) {
             IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
@@ -326,6 +397,48 @@ public abstract class Check {
      *            the argument name
      */
     public static void notNegativeArgument(final int value, final String argumentName) {
+        Check.notNullArgument(argumentName, "argumentName");
+        if (value < 0) {
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
+                    + argumentName + " must not negative");
+            if (Check.activeArgumentCheck) {
+                throw illegalArgExc;
+            } else {
+                Check.alternativeFailureAction(illegalArgExc);
+            }
+        }
+    }
+    
+    /**
+     * Not zero or negative.
+     * 
+     * @param value
+     *            the value
+     * @param argumentName
+     *            the argument name
+     */
+    public static void notNegativeArgument(final long value, final String argumentName) {
+        Check.notNullArgument(argumentName, "argumentName");
+        if (value < 0) {
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
+                    + argumentName + " must not negative");
+            if (Check.activeArgumentCheck) {
+                throw illegalArgExc;
+            } else {
+                Check.alternativeFailureAction(illegalArgExc);
+            }
+        }
+    }
+    
+    /**
+     * Not zero or negative.
+     * 
+     * @param value
+     *            the value
+     * @param argumentName
+     *            the argument name
+     */
+    public static void notNegativeArgument(final double value, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
         if (value < 0) {
             IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
