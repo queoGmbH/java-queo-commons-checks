@@ -1,13 +1,15 @@
 package com.queomedia.commons.checks;
 
-import org.apache.log4j.Logger;
-
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
 import com.queomedia.commons.equals.EqualsChecker;
+import com.queomedia.commons.equals.NativeEqualsChecker;
 import com.queomedia.commons.exceptions.ArgumentNullException;
 import com.queomedia.commons.exceptions.ConstraintViolationException;
 import com.queomedia.commons.exceptions.NotImplmentedCaseExecption;
@@ -20,7 +22,7 @@ import com.queomedia.commons.exceptions.NotImplmentedCaseExecption;
  * if the check fails. All other checks throw an {@code
  * ConstraintViolationException} if the check fails.
  */
-public abstract class Check {
+public final class Check {
 
     /**
      * Logger for this class
@@ -44,7 +46,7 @@ public abstract class Check {
      * Util classes need no constructor.
      */
     private Check() {
-        // nothing to do
+        super();
     }
 
     /**
@@ -178,6 +180,35 @@ public abstract class Check {
             }
         }
     }
+    
+    /**
+     * Checks for (not) empty Collection argument.
+     * 
+     * @param argument
+     *            the argument
+     * @param argumentName
+     *            the argument name
+     * 
+     * @throws ArgumentNullException
+     *             if the argument is null
+     * @throws IllegalArgumentException
+     *             if the argument is empty
+     */
+    public static void notEmptyArgument(final Collection<?> argument, final String argumentName)
+            throws IllegalArgumentException {
+        Check.notNullArgument(argument, argumentName);
+        Check.notNullArgument(argumentName, "argumentName");
+
+        if (argument.isEmpty()) {
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - String argument "
+                    + argumentName + " must have length");
+            if (Check.activeArgumentCheck) {
+                throw illegalArgExc;
+            } else {
+                Check.alternativeFailureAction(illegalArgExc);
+            }
+        }
+    }
 
     /**
      * Argument instance of.
@@ -274,6 +305,27 @@ public abstract class Check {
             }
         }
     }
+    
+    /**
+     * Not zero.
+     * 
+     * @param value
+     *            the value
+     * @param argumentName
+     *            the argument name
+     */
+    public static void notZeroArgument(final long value, final String argumentName) {
+        Check.notNullArgument(argumentName, "argumentName");
+        if (value == 0) {
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
+                    + argumentName + " must not be zero");
+            if (Check.activeArgumentCheck) {
+                throw illegalArgExc;
+            } else {
+                Check.alternativeFailureAction(illegalArgExc);
+            }
+        }
+    }
 
     /**
      * Not zero or negative.
@@ -284,6 +336,27 @@ public abstract class Check {
      *            the argument name
      */
     public static void notZeroOrNegativeArgument(final int value, final String argumentName) {
+        Check.notNullArgument(argumentName, "argumentName");
+        if (value <= 0) {
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
+                    + argumentName + " must not be zero or negative");
+            if (Check.activeArgumentCheck) {
+                throw illegalArgExc;
+            } else {
+                Check.alternativeFailureAction(illegalArgExc);
+            }
+        }
+    }
+    
+    /**
+     * Not zero or negative.
+     * 
+     * @param value
+     *            the value
+     * @param argumentName
+     *            the argument name
+     */
+    public static void notZeroOrNegativeArgument(final long value, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
         if (value <= 0) {
             IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
@@ -326,6 +399,48 @@ public abstract class Check {
      *            the argument name
      */
     public static void notNegativeArgument(final int value, final String argumentName) {
+        Check.notNullArgument(argumentName, "argumentName");
+        if (value < 0) {
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
+                    + argumentName + " must not negative");
+            if (Check.activeArgumentCheck) {
+                throw illegalArgExc;
+            } else {
+                Check.alternativeFailureAction(illegalArgExc);
+            }
+        }
+    }
+    
+    /**
+     * Not zero or negative.
+     * 
+     * @param value
+     *            the value
+     * @param argumentName
+     *            the argument name
+     */
+    public static void notNegativeArgument(final long value, final String argumentName) {
+        Check.notNullArgument(argumentName, "argumentName");
+        if (value < 0) {
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
+                    + argumentName + " must not negative");
+            if (Check.activeArgumentCheck) {
+                throw illegalArgExc;
+            } else {
+                Check.alternativeFailureAction(illegalArgExc);
+            }
+        }
+    }
+    
+    /**
+     * Not zero or negative.
+     * 
+     * @param value
+     *            the value
+     * @param argumentName
+     *            the argument name
+     */
+    public static void notNegativeArgument(final double value, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
         if (value < 0) {
             IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
@@ -1613,6 +1728,116 @@ public abstract class Check {
     public static void containsExactOneNotNull(final Object value1, final Object value2, final Object... values) {
         Check.containsExactOneNotNull(null, value1, value2, values);
     }
+    
+    
+    /**
+     * Check that all elements of an argument colletiona are unique with respect to the equals checker.
+     * @param message a message if the check fails
+     * @param elements the list of proven elements 
+     * @param equalsChecker used to check the equality between two elements.
+     * @param argumentName the name of the argument
+     */
+    public static <T> void uniqueElementsArgument(final Collection<T> collection, final EqualsChecker<T, T> equalsChecker,
+            final String argumentName) {
+        Check.notNullArgument(collection, "collection");
+        Check.notNullArgument(equalsChecker, "equalsChecker");
+        Check.notNullArgument(argumentName, "argumentName");
+
+        List<T> elements = new ArrayList<T>(collection);
+        int size = elements.size();
+        for (int i = 0; i < size; i++) {
+            T elementI = elements.get(i);
+            for (int k = i + 1; k < size; k++) {
+                T elementK = elements.get(k);
+                if (equalsChecker.equals(elementI, elementK)) {
+                   
+                    IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                            "[Assertion failed] - collection on argument <code>" + argumentName + "</code> has not unique element -  two (or more) elements are equals with respect to an equals definition - equals element[" + i + "]: " + elementI + ", equals element[" + k + "]: " + elementK + ", collection=" + collection); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+                    if (Check.activeArgumentCheck) {
+                        throw illegalArgExc;
+                    } else {
+                        Check.alternativeFailureAction(illegalArgExc);
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     * Check that all elements of an argument colletions are unique with respect to the equals checker.
+     * @param message a message if the check fails 
+     * @param equalsChecker used to check the equality between two elements.
+     * @param argumentName the name of the argument
+     */
+    public static <T> void uniqueElementsArgument(final Collection<T> collection,
+            final String argumentName) {
+        Check.notNullArgument(collection, "collection");
+        Check.notNullArgument(argumentName, "argumentName");
+        
+        uniqueElementsArgument(collection, NativeEqualsChecker.<T>getInstance(),argumentName);
+    }
+    
+    /**
+     * Check that all elements are unique with respect to the equals checker.
+     * @param message a message if the check fails
+     * @param elements the list of proven elements 
+     * @param equalsChecker used to check the equality between two elements.
+     */
+    public static <T> void uniqueElements(final String message, final Collection<T> collection, final EqualsChecker<T, T> equalsChecker) {
+        Check.notNullArgument(collection, "collection");
+        Check.notNullArgument(equalsChecker, "equalsChecker");
+        
+
+        List<T> elements = new ArrayList<T>(collection);
+        int size = elements.size();
+        for (int i = 0; i < size; i++) {
+            T elementI = elements.get(i);
+            for (int k = i + 1; k < size; k++) {
+                T elementK = elements.get(k);
+                if (equalsChecker.equals(elementI, elementK)) {                 
+                    Check.fail(Check.format(message, "[Assertion failed] - collection has not unique element -  two (or more) elements are equals with respect to an equals definition - equals element[" + i + "]: " + elementI + ", equals element[" + k + "]: " + elementK + ", collection=" + collection));
+                }
+            }
+        }
+    }
+    
+    /**
+     * Check that all elements are unique with respect to the equals checker.
+     * @param message a message if the check fails
+     * @param elements the list of proven elements 
+     * @param equalsChecker used to check the equality between two elements.
+     */
+    public static <T> void uniqueElements(final Collection<T> collection, final EqualsChecker<T, T> equalsChecker) {
+        Check.notNullArgument(collection, "collection");
+        Check.notNullArgument(equalsChecker, "equalsChecker");
+        
+        uniqueElements(null, collection, equalsChecker);
+    }
+    
+    /**
+     * Check that all elements are unique.
+     * @param message a message if the check fails
+     * @param elements the list of proven elements 
+     */
+    public static <T> void uniqueElements(final String message, final Collection<T> collection) {
+        Check.notNullArgument(collection, "collection");        
+        
+        uniqueElements(null, collection, NativeEqualsChecker.<T>getInstance());
+    }
+    
+    /**
+     * Check that all elements are unique.
+     * @param message a message if the check fails
+     * @param elements the list of proven elements 
+     */
+    public static <T> void uniqueElements(final Collection<T> collection) {
+        Check.notNullArgument(collection, "collection");
+        
+        uniqueElements(null, collection);
+    }
+    
+   
+        
 
     /**
      * Fails a test with the given message.

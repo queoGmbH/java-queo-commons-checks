@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.queomedia</groupId>
 	<artifactId>queo-commons-checks</artifactId>
 	<name>queo commons check</name>
-	<version>0.1.2-SNAPSHOT</version>
+	<version>1.1.0</version>
 	<description>Common utils to embedde checks like asserts within the code.</description>
 
 	<issueManagement>
@@ -13,10 +12,21 @@
 	</issueManagement>
 
 	<scm>
-		<connection>scm:svn:http://skylla/queo_commons/java/queo-commons-checks/trunk</connection>
-		<developerConnection>scm:svn:http://skylla/queo_commons/java/queo-commons-checks/trunk</developerConnection>
-		<url>http://skylla/queo_commons/java/queo-commons-checks/trunk</url>
+		<connection>scm:svn:svn://skylla/queo_commons/java/queo-commons-checks/tags/queo-commons-checks-1.1.0</connection>
+		<developerConnection>scm:svn:svn://skylla/queo_commons/java/queo-commons-checks/tags/queo-commons-checks-1.1.0</developerConnection>
+		<url>http://skylla/queo_commons/java/queo-commons-checks/tags/queo-commons-checks-1.1.0</url>
 	</scm>
+	
+	<distributionManagement>
+		<repository>
+			<id>com.queomedia</id>
+			<url>http://skylla:8080/nexus/content/repositories/com.queomedia</url>
+		</repository>
+		<snapshotRepository>
+			<id>com.queomedia-snapshot</id>
+			<url>http://skylla:8080/nexus/content/repositories/com.queomedia-snapshot</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<developers>
 		<developer>
@@ -25,13 +35,6 @@
 			<email>ralph.engelmann@queo-media.com</email>
 		</developer>
 	</developers>
-
-	<distributionManagement>
-		<snapshotRepository>
-			<id>com.queomedia-snapshot</id>
-			<url>http://skylla:8080/nexus/content/repositories/com.queomedia-snapshot</url>
-		</snapshotRepository>
-	</distributionManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -80,12 +83,12 @@
 		<dependency>
 			<groupId>com.queomedia</groupId>
 			<artifactId>queo-commons-equals</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>1.2.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.queomedia</groupId>
 			<artifactId>queo-commons-exceptions</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
