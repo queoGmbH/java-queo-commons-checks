@@ -2,9 +2,12 @@ package com.queomedia.commons.checks;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.junit.Test;
+
+import com.queomedia.commons.exceptions.ConstraintViolationException;
 
 import junit.framework.Assert;
 
@@ -25,16 +28,9 @@ public class CheckTest {
     /**
      * Test method for {@link com.queomedia.util.asserts.Check#argumentInstanceOf(java.lang.Object, java.lang.Class, java.lang.String)}.
      */
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testArgumentInstanceOf_normalFail() {
-
-        Object value = new Object();
-        try {
-            Check.argumentInstanceOf(value, Collection.class, "test1");
-            Assert.fail("Exception expected");
-        } catch (IllegalArgumentException e) {
-            //Excpected
-        }
+        Check.argumentInstanceOf(new Object(), Collection.class, "test1");
     }
 
     /**
@@ -52,24 +48,16 @@ public class CheckTest {
         /* ok */
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testArgumentGreaterEquals_faius() {
-        try {
-            Check.argumentGreaterEquals(3, 0, "test");
-            Assert.fail("Exception expected");
-        } catch (IllegalArgumentException e) {
-            //expected
-        }
+        Check.argumentGreaterEquals(3, 0, "test");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testArgumentGreaterEquals_NaN() {
-        try {
-            Check.argumentGreaterEquals(0, Double.NaN, "test");
-            Assert.fail("Exception expected");
-        } catch (IllegalArgumentException e) {
-            //expected
-        }
+
+        Check.argumentGreaterEquals(0, Double.NaN, "test");
+
     }
 
     @Test
@@ -78,14 +66,11 @@ public class CheckTest {
 
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testArgumentGreaterEquals_NegativeInfinitiy() {
-        try {
-            Check.argumentGreaterEquals(0, Double.NEGATIVE_INFINITY, "test");
-            Assert.fail("Exception expected");
-        } catch (IllegalArgumentException e) {
-            //expected
-        }
+
+        Check.argumentGreaterEquals(0, Double.NEGATIVE_INFINITY, "test");
+
     }
 
     @Test
@@ -93,24 +78,18 @@ public class CheckTest {
         Check.equalsArgument("s" + "1", "s1", "arg");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testEqualsArgument_fail() {
-        try {
-            Check.equalsArgument("s", "s1", "arg");
-            Assert.fail("Exception expected");
-        } catch (IllegalArgumentException e) {
-            //expected
-        }
+
+        Check.equalsArgument("s", "s1", "arg");
+
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testEqualsArgument_fail_null() {
-        try {
-            Check.equalsArgument("s", null, "arg");
-            Assert.fail("Exception expected");
-        } catch (IllegalArgumentException e) {
-            //expected
-        }
+
+        Check.equalsArgument("s", null, "arg");
+
     }
 
     @Test
@@ -123,33 +102,65 @@ public class CheckTest {
         Check.equalsOrNullArgument("s", null, "arg");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testEqualsOrNullArgument_fail() {
-        try {
-            Check.equalsOrNullArgument("s", "s1", "arg");
-            Assert.fail("Exception expected");
-        } catch (IllegalArgumentException e) {
-            //expected
-        }
+        Check.equalsOrNullArgument("s", "s1", "arg");
+
     }
 
     @Test
-    public void testNotNegativeArgument() {        
-        Check.notNegativeArgument(1, "arg");           
+    public void testNotNegativeArgument() {
+        Check.notNegativeArgument(1, "arg");
     }
-    
+
     @Test
-    public void testNotNegativeArgument_zero() {        
-        Check.notNegativeArgument(0, "arg");             
+    public void testNotNegativeArgument_zero() {
+        Check.notNegativeArgument(0, "arg");
     }
-    
-    @Test
+
+    @Test(expected = IllegalArgumentException.class)
     public void testNotNegativeArgument_fail() {
-        try {
-            Check.notNegativeArgument(-1, "arg");
-            Assert.fail("Exception expected");
-        } catch (IllegalArgumentException e) {
-            //expected
-        }
+        Check.notNegativeArgument(-1, "arg");
+    }
+
+    @Test
+    public void testUniqueElementsArgument() {
+        Check.uniqueElementsArgument(Arrays.asList(1, 2, 3, 4), IntegerEqualsChecker.INSTANCHE, "argumentName");
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testUniqueElementsArgument_fail() {
+        Check.uniqueElementsArgument(Arrays.asList(1, 2, 3, 1), IntegerEqualsChecker.INSTANCHE, "argumentName");
+    }
+    
+    @Test
+    public void testUniqueElementsArgument_NativeEquals() {
+        Check.uniqueElementsArgument(Arrays.asList(1, 2, 3, 4), "argumentName");
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testUniqueElementsArgument_NativeEquals_fail() {
+        Check.uniqueElementsArgument(Arrays.asList(1, 2, 3, 1), "argumentName");
+    }
+    
+    
+    @Test
+    public void testUniqueElements() {
+        Check.uniqueElements(Arrays.asList(1, 2, 3, 4), IntegerEqualsChecker.INSTANCHE);
+    }
+    
+    @Test(expected = ConstraintViolationException.class)
+    public void testUniqueElements_fail() {
+        Check.uniqueElements(Arrays.asList(1, 2, 3, 1), IntegerEqualsChecker.INSTANCHE);
+    }
+    
+    @Test
+    public void testUniqueElements_NativeEquals() {
+        Check.uniqueElements(Arrays.asList(1, 2, 3, 4));
+    }
+    
+    @Test(expected = ConstraintViolationException.class)
+    public void testUniqueElements_fail_NativeEquals() {
+        Check.uniqueElements(Arrays.asList(1, 2, 3, 1));
     }
 }
