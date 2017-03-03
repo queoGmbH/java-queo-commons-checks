@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.queomedia.commons.exceptions.ConstraintViolationException;
-
-import junit.framework.Assert;
 
 public class CheckTest {
 
@@ -127,38 +126,37 @@ public class CheckTest {
     public void testUniqueElementsArgument() {
         Check.uniqueElementsArgument(Arrays.asList(1, 2, 3, 4), IntegerEqualsChecker.INSTANCHE, "argumentName");
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void testUniqueElementsArgument_fail() {
         Check.uniqueElementsArgument(Arrays.asList(1, 2, 3, 1), IntegerEqualsChecker.INSTANCHE, "argumentName");
     }
-    
+
     @Test
     public void testUniqueElementsArgument_NativeEquals() {
         Check.uniqueElementsArgument(Arrays.asList(1, 2, 3, 4), "argumentName");
     }
-    
+
     @Test(expected = IllegalArgumentException.class)
     public void testUniqueElementsArgument_NativeEquals_fail() {
         Check.uniqueElementsArgument(Arrays.asList(1, 2, 3, 1), "argumentName");
     }
-    
-    
+
     @Test
     public void testUniqueElements() {
         Check.uniqueElements(Arrays.asList(1, 2, 3, 4), IntegerEqualsChecker.INSTANCHE);
     }
-    
+
     @Test(expected = ConstraintViolationException.class)
     public void testUniqueElements_fail() {
         Check.uniqueElements(Arrays.asList(1, 2, 3, 1), IntegerEqualsChecker.INSTANCHE);
     }
-    
+
     @Test
     public void testUniqueElements_NativeEquals() {
         Check.uniqueElements(Arrays.asList(1, 2, 3, 4));
     }
-    
+
     @Test(expected = ConstraintViolationException.class)
     public void testUniqueElements_fail_NativeEquals() {
         Check.uniqueElements(Arrays.asList(1, 2, 3, 1));
