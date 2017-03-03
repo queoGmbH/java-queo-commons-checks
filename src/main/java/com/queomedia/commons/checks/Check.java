@@ -6,13 +6,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
-
 import com.queomedia.commons.equals.EqualsChecker;
 import com.queomedia.commons.equals.NativeEqualsChecker;
 import com.queomedia.commons.exceptions.ArgumentNullException;
 import com.queomedia.commons.exceptions.ConstraintViolationException;
-import com.queomedia.commons.exceptions.NotImplmentedCaseExecption;
+import com.queomedia.commons.exceptions.NotImplementedCaseExecption;
 
 /**
  * This tool class provides several checks. This class is designed for use in
@@ -25,13 +23,9 @@ import com.queomedia.commons.exceptions.NotImplmentedCaseExecption;
 public final class Check {
 
     /**
-     * Logger for this class
-     */
-    private static final Logger LOGGER = Logger.getLogger(Check.class);
-
-    /**
      * Define the alternative action when the normal check fail action is deactivated.
      */
+    @Deprecated
     private static AlternativFailureAction alternativeFailureAction = AlternativFailureAction.NONE;
 
     /**
@@ -40,6 +34,7 @@ public final class Check {
      * false, then {@code alternativeFailureAction} define the action for a
      * failure.
      */
+    @Deprecated
     private static boolean activeArgumentCheck = true;
 
     /**
@@ -55,6 +50,7 @@ public final class Check {
      * 
      * @return the alternative failure action
      */
+    @Deprecated
     public static AlternativFailureAction getAlternativeFailureAction() {
         return Check.alternativeFailureAction;
     }
@@ -66,6 +62,7 @@ public final class Check {
      * @param alternativeFailureAction
      *            the new alternative failure action
      */
+    @Deprecated
     public static void setAlternativeFailureAction(final AlternativFailureAction alternativeFailureAction) {
         Check.alternativeFailureAction = alternativeFailureAction;
     }
@@ -78,6 +75,7 @@ public final class Check {
      * 
      * @return the active argument check
      */
+    @Deprecated
     public static boolean getActiveArgumentCheck() {
         return Check.activeArgumentCheck;
     }
@@ -91,6 +89,7 @@ public final class Check {
      * @param activeArgumentCheck
      *            the new active argument check
      */
+    @Deprecated
     public static void setActiveArgumentCheck(final boolean activeArgumentCheck) {
         Check.activeArgumentCheck = activeArgumentCheck;
     }
@@ -101,22 +100,21 @@ public final class Check {
      * @param message
      *            the message
      */
+    @Deprecated
     private static void alternativeFailureAction(final String message) {
         switch (Check.alternativeFailureAction) {
 
         case NONE:
             return;
         case LOG:
-            if (Check.LOGGER.isInfoEnabled()) {
-                Check.LOGGER.info("Check failure - message=" + message); //$NON-NLS-1$
-            }
+            System.out.println("Check failure - message=" + message);
             return;
         case SYSTEM_OUT:
-            System.out.println("Check failure - message=" + message); //$NON-NLS-1$
+            System.out.println("Check failure - message=" + message);
             return;
         default:
-            throw new NotImplmentedCaseExecption("alternativeFailureAction " + Check.alternativeFailureAction
-                    + " is not implemented");
+            throw new NotImplementedCaseExecption(
+                    "alternativeFailureAction " + Check.alternativeFailureAction + " is not implemented");
         }
     }
 
@@ -126,6 +124,7 @@ public final class Check {
      * @param e
      *            the e
      */
+    @Deprecated
     private static void alternativeFailureAction(final Exception e) {
         Check.alternativeFailureAction(e.toString());
     }
@@ -171,8 +170,8 @@ public final class Check {
         Check.notNullArgument(argumentName, "argumentName");
 
         if (argument.length() == 0) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - String argument "
-                    + argumentName + " must have length");
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - String argument " + argumentName + " must have length");
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -180,7 +179,7 @@ public final class Check {
             }
         }
     }
-    
+
     /**
      * Checks for (not) empty Collection argument.
      * 
@@ -200,8 +199,8 @@ public final class Check {
         Check.notNullArgument(argumentName, "argumentName");
 
         if (argument.isEmpty()) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - String argument "
-                    + argumentName + " must have length");
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - String argument " + argumentName + " must have length");
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -228,9 +227,9 @@ public final class Check {
         Check.notNullArgument(argumentName, "argumentName");
 
         if (!type.isAssignableFrom(argument.getClass())) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - type "
-                    + type.getName() + " expected for argument " + argumentName + " but get an object of type "
-                    + argument.getClass().getName());
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - type " + type.getName() + " expected for argument " + argumentName
+                            + " but get an object of type " + argument.getClass().getName());
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -275,8 +274,8 @@ public final class Check {
     public static void falseArgument(final boolean bool, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
         if (bool) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - boolean argument "
-                    + argumentName + " should be false but is true");
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - boolean argument " + argumentName + " should be false but is true");
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -296,8 +295,8 @@ public final class Check {
     public static void notZeroArgument(final int value, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
         if (value == 0) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
-                    + argumentName + " must not be zero");
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - the int argument " + argumentName + " must not be zero");
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -305,7 +304,7 @@ public final class Check {
             }
         }
     }
-    
+
     /**
      * Not zero.
      * 
@@ -317,8 +316,8 @@ public final class Check {
     public static void notZeroArgument(final long value, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
         if (value == 0) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
-                    + argumentName + " must not be zero");
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - the int argument " + argumentName + " must not be zero");
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -338,8 +337,8 @@ public final class Check {
     public static void notZeroOrNegativeArgument(final int value, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
         if (value <= 0) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
-                    + argumentName + " must not be zero or negative");
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - the int argument " + argumentName + " must not be zero or negative");
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -347,7 +346,7 @@ public final class Check {
             }
         }
     }
-    
+
     /**
      * Not zero or negative.
      * 
@@ -359,8 +358,8 @@ public final class Check {
     public static void notZeroOrNegativeArgument(final long value, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
         if (value <= 0) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
-                    + argumentName + " must not be zero or negative");
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - the int argument " + argumentName + " must not be zero or negative");
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -380,8 +379,8 @@ public final class Check {
     public static void notZeroArgument(final double value, final double epsylon, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
         if (Math.abs(value) < epsylon) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
-                    + argumentName + " must not be zero");
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - the int argument " + argumentName + " must not be zero");
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -389,7 +388,7 @@ public final class Check {
             }
         }
     }
-    
+
     /**
      * Not zero or negative.
      * 
@@ -401,8 +400,8 @@ public final class Check {
     public static void notNegativeArgument(final int value, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
         if (value < 0) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
-                    + argumentName + " must not negative");
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - the int argument " + argumentName + " must not negative");
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -410,7 +409,7 @@ public final class Check {
             }
         }
     }
-    
+
     /**
      * Not zero or negative.
      * 
@@ -422,8 +421,8 @@ public final class Check {
     public static void notNegativeArgument(final long value, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
         if (value < 0) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
-                    + argumentName + " must not negative");
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - the int argument " + argumentName + " must not negative");
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -431,7 +430,7 @@ public final class Check {
             }
         }
     }
-    
+
     /**
      * Not zero or negative.
      * 
@@ -443,8 +442,8 @@ public final class Check {
     public static void notNegativeArgument(final double value, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
         if (value < 0) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the int argument "
-                    + argumentName + " must not negative");
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - the int argument " + argumentName + " must not negative");
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -471,13 +470,9 @@ public final class Check {
             if (valueB == null) {
                 return;
             } else {
-                IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the arguments "
-                        + argumentNameA
-                        + " and "
-                        + argumentNameB
-                        + " are not equal, the firstone is "
-                        + valueA
-                        + " the second one is " + valueB);
+                IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                        "[Assertion failed] - the arguments " + argumentNameA + " and " + argumentNameB
+                                + " are not equal, the firstone is " + valueA + " the second one is " + valueB);
                 if (Check.activeArgumentCheck) {
                     throw illegalArgExc;
                 } else {
@@ -486,13 +481,9 @@ public final class Check {
             }
         } else {
             if (!valueA.equals(valueB)) {
-                IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the arguments "
-                        + argumentNameA
-                        + " and "
-                        + argumentNameB
-                        + " are not equal, the firstone is "
-                        + valueA
-                        + " the second one is " + valueB);
+                IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                        "[Assertion failed] - the arguments " + argumentNameA + " and " + argumentNameB
+                                + " are not equal, the firstone is " + valueA + " the second one is " + valueB);
                 if (Check.activeArgumentCheck) {
                     throw illegalArgExc;
                 } else {
@@ -518,9 +509,9 @@ public final class Check {
             final String argumentNameB) {
 
         if (valueA != valueB) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - the arguments "
-                    + argumentNameA + " and " + argumentNameB + " are not equal, the firstone is " + valueA
-                    + " the second one is " + valueB);
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - the arguments " + argumentNameA + " and " + argumentNameB
+                            + " are not equal, the firstone is " + valueA + " the second one is " + valueB);
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -545,7 +536,9 @@ public final class Check {
      */
     public static void argumentBetween(final int value, final int min, final int max, final String argumentName) {
         if (value < min) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - this String argument <code>" + argumentName + "</code> must be greater or equals " + min + " but is " + value); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - this String argument <code>" + argumentName //$NON-NLS-1$
+                            + "</code> must be greater or equals " + min + " but is " + value);
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -553,7 +546,9 @@ public final class Check {
             }
         }
         if (value > max) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - this String argument <code>" + argumentName + "</code> must be less or equals " + max + " but is " + value); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - this String argument <code>" + argumentName //$NON-NLS-1$
+                            + "</code> must be less or equals " + max + " but is " + value);
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -575,9 +570,12 @@ public final class Check {
      * @param argumentName
      *            the name of the argument.
      */
-    public static void argumentBetween(final double value, final double min, final double max, final String argumentName) {
+    public static void argumentBetween(final double value, final double min, final double max,
+            final String argumentName) {
         if (value < min) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - this String argument <code>" + argumentName + "</code> must be greater or equals " + min + " but is " + value); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - this String argument <code>" + argumentName //$NON-NLS-1$
+                            + "</code> must be greater or equals " + min + " but is " + value);
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -585,7 +583,9 @@ public final class Check {
             }
         }
         if (value > max) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - this String argument <code>" + argumentName + "</code> must be less or equals " + max + " but is " + value); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - this String argument <code>" + argumentName //$NON-NLS-1$
+                            + "</code> must be less or equals " + max + " but is " + value);
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -610,7 +610,9 @@ public final class Check {
          * argumentValue is NaN then (NaN < min) is true
          */
         if (!(argumentValue >= min)) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - this String argument <code>" + argumentName + "</code> must be greater or equals " + min + " but is " + argumentValue); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - this String argument <code>" + argumentName //$NON-NLS-1$
+                            + "</code> must be greater or equals " + min + " but is " + argumentValue);
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -635,7 +637,9 @@ public final class Check {
          * argumentValue is NaN then (NaN < min) is true
          */
         if (!(argumentValue >= min)) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - this String argument <code>" + argumentName + "</code> must be greater or equals " + min + " but is " + argumentValue); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - this String argument <code>" + argumentName //$NON-NLS-1$
+                            + "</code> must be greater or equals " + min + " but is " + argumentValue);
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -661,7 +665,9 @@ public final class Check {
          * argumentValue is NaN then (NaN < min) is true
          */
         if (!(argumentValue >= min)) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - this String argument <code>" + argumentName + "</code> must be greater or equals " + min + " but is " + argumentValue); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - this String argument <code>" + argumentName //$NON-NLS-1$
+                            + "</code> must be greater or equals " + min + " but is " + argumentValue);
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -686,7 +692,9 @@ public final class Check {
          * argumentValue is NaN then (NaN > max) is true
          */
         if (!(argumentValue <= max)) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - this String argument <code>" + argumentName + "</code> must be less or equals " + max + " but is " + argumentValue); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - this String argument <code>" + argumentName //$NON-NLS-1$
+                            + "</code> must be less or equals " + max + " but is " + argumentValue);
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -750,7 +758,10 @@ public final class Check {
         Check.notNullArgument(argumentNameB, "argumentNameB");
 
         if (collectionA.size() != collectionB.size()) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - collections have different size: " + argumentNameA + ".size() = " + collectionA.size() + " , " + argumentNameB + ".size() = " + collectionB.size() + "\n argumentNameA = " + argumentNameA + ",\n argumentNameB = " + argumentNameA); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - collections have different size: " + argumentNameA + ".size() = " //$NON-NLS-1$
+                            + collectionA.size() + " , " + argumentNameB + ".size() = " + collectionB.size()
+                            + "\n argumentNameA = " + argumentNameA + ",\n argumentNameB = " + argumentNameA);
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -780,7 +791,10 @@ public final class Check {
         Check.notNullArgument(argumentNameB, "argumentNameB");
 
         if (arrayA.length != arrayB.length) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - arrays have different length: " + argumentNameA + ".length = " + arrayA.length + " , " + argumentNameB + ".length = " + arrayB.length + "\n argumentNameA = " + argumentNameA + ",\n argumentNameB = " + argumentNameA); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - arrays have different length: " + argumentNameA + ".length = " + arrayA.length //$NON-NLS-1$
+                            + " , " + argumentNameB + ".length = " + arrayB.length + "\n argumentNameA = "
+                            + argumentNameA + ",\n argumentNameB = " + argumentNameA);
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -794,7 +808,8 @@ public final class Check {
         Check.notNullArgument(argumentName, "argumentName");
 
         if (array.length < 1) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - argument array " + argumentName + " should have one or more element(s) - but it is empty"); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - argument array " //$NON-NLS-1$
+                    + argumentName + " should have one or more element(s) - but it is empty");
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -808,7 +823,9 @@ public final class Check {
         Check.notNullArgument(argumentName, "argumentName");
 
         if (collection.size() < 1) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - argument colection " + argumentName + " should have one or more element(s) - but it is empty"); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException(
+                    "[Assertion failed] - argument colection " + argumentName //$NON-NLS-1$
+                            + " should have one or more element(s) - but it is empty");
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -837,7 +854,8 @@ public final class Check {
             return;
         }
         if ((expected != null) && (!expected.equals(argument))) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - argument " + argumentName + " is not equals to " + expected + ", it was " + argument); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - argument " //$NON-NLS-1$
+                    + argumentName + " is not equals to " + expected + ", it was " + argument);
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -881,7 +899,8 @@ public final class Check {
         Check.notNullArgument(argumentName, "argumentName");
 
         if (expected != argument) {
-            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - argument " + argumentName + " is not equals to " + expected + ", it was " + argument); //$NON-NLS-1$
+            IllegalArgumentException illegalArgExc = new IllegalArgumentException("[Assertion failed] - argument " //$NON-NLS-1$
+                    + argumentName + " is not equals to " + expected + ", it was " + argument);
             if (Check.activeArgumentCheck) {
                 throw illegalArgExc;
             } else {
@@ -1117,7 +1136,9 @@ public final class Check {
         if (found.size() != expected.size()) {
             Check.failCompare(Check.format(message,
                     "[Assertion failed] - collections does not habe the same size - expected collection=" + expected
-                            + " found collection=" + found), expected.size(), found.size());
+                            + " found collection=" + found),
+                    expected.size(),
+                    found.size());
         }
     }
 
@@ -1153,8 +1174,11 @@ public final class Check {
         Check.sameSize(message, expected, found);
         for (T expectedItem : expected) {
             if (!found.contains(expectedItem)) {
-                Check.failCompare(Check.format(message, "[Assertion failed] - collection + " + found
-                        + " does not contrain " + expectedItem), expected, found);
+                Check.failCompare(
+                        Check.format(message,
+                                "[Assertion failed] - collection + " + found + " does not contrain " + expectedItem),
+                        expected,
+                        found);
             }
         }
     }
@@ -1192,8 +1216,10 @@ public final class Check {
                     found);
         }
         if (!found.contains(expectedItem)) {
-            Check.failCompare(Check.format(message,
-                    "[Assertion failed] - collection does not contrain expected element"), expectedItem, found);
+            Check.failCompare(
+                    Check.format(message, "[Assertion failed] - collection does not contrain expected element"),
+                    expectedItem,
+                    found);
         }
     }
 
@@ -1239,8 +1265,10 @@ public final class Check {
                 }
             }
             if (!ok) {
-                Check.failCompare(Check.format(message, "collections does not contain equal elements "
-                        + "first not found element=" + expectedObject), expected, found);
+                Check.failCompare(Check.format(message,
+                        "collections does not contain equal elements " + "first not found element=" + expectedObject),
+                        expected,
+                        found);
             }
         }
     }
@@ -1324,9 +1352,11 @@ public final class Check {
         int size = expected.size();
         for (int i = 0; i < size; i++) {
             if (!expected.get(i).equals(found.get(i))) {
-                Check.failCompare(Check.format(message, "[Assertion failed] - the elements have not the same order - "
-                        + "first difference at index " + i + " - expected element=" + expected.get(i)
-                        + ", found element=" + found.get(i)), expected, found);
+                Check.failCompare(Check.format(message,
+                        "[Assertion failed] - the elements have not the same order - " + "first difference at index "
+                                + i + " - expected element=" + expected.get(i) + ", found element=" + found.get(i)),
+                        expected,
+                        found);
             }
         }
     }
@@ -1371,16 +1401,15 @@ public final class Check {
                     Check.failCompare(Check.format(message,
                             "[Assertion failed] - the elements have not the same order - "
                                     + "first difference at index " + i + " - expected element=" + expected.get(i)
-                                    + ", found element=" + found.get(i)), expected, found);
+                                    + ", found element=" + found.get(i)),
+                            expected,
+                            found);
                 }
             } catch (RuntimeException e) {
-                throw new IllegalArgumentException("[Exception while assertion check] - the elements have not the same order"
-                        + "(first difference at index "
-                        + i
-                        + " (expected="
-                        + expected.get(i)
-                        + " found="
-                        + found.get(i) + ")) - expected list + " + expected + " found list " + found,
+                throw new IllegalArgumentException(
+                        "[Exception while assertion check] - the elements have not the same order"
+                                + "(first difference at index " + i + " (expected=" + expected.get(i) + " found="
+                                + found.get(i) + ")) - expected list + " + expected + " found list " + found,
                         e);
             }
         }
@@ -1560,8 +1589,9 @@ public final class Check {
         Check.notNullArgument(found, "found");
 
         if (found.contains(notExpectedItem)) {
-            Check.fail(Check.format(message, "[Assertion failed] - colection + " + found
-                    + " does contrain the not expected item " + notExpectedItem));
+            Check.fail(Check.format(message,
+                    "[Assertion failed] - colection + " + found + " does contrain the not expected item "
+                            + notExpectedItem));
         }
     }
 
@@ -1608,8 +1638,9 @@ public final class Check {
         }
 
         if (trueCounter != 1) {
-            Check.fail(Check.format(message, "[Assertion failed] - the booleans + " + value1 + ", " + value2 + ", "
-                    + values + " does not contains exactly one TRUE value - " + trueCounter + " true values found"));
+            Check.fail(Check.format(message,
+                    "[Assertion failed] - the booleans + " + value1 + ", " + value2 + ", " + values
+                            + " does not contains exactly one TRUE value - " + trueCounter + " true values found"));
         }
     }
 
@@ -1658,9 +1689,10 @@ public final class Check {
         }
 
         if (notNullCounter > 1) {
-            Check.fail(Check.format(message, "[Assertion failed] - the Objects + " + value1 + ", " + value2 + ", "
-                    + values + " does not contains zero or one NOT NULL value - " + notNullCounter
-                    + " not Null values found"));
+            Check.fail(Check.format(message,
+                    "[Assertion failed] - the Objects + " + value1 + ", " + value2 + ", " + values
+                            + " does not contains zero or one NOT NULL value - " + notNullCounter
+                            + " not Null values found"));
         }
     }
 
@@ -1709,9 +1741,10 @@ public final class Check {
         }
 
         if (notNullCounter != 1) {
-            Check.fail(Check.format(message, "[Assertion failed] - the Objects + " + value1 + ", " + value2 + ", "
-                    + values + " does not contains exactly one NOT NULL value - " + notNullCounter
-                    + " not Null values found"));
+            Check.fail(Check.format(message,
+                    "[Assertion failed] - the Objects + " + value1 + ", " + value2 + ", " + values
+                            + " does not contains exactly one NOT NULL value - " + notNullCounter
+                            + " not Null values found"));
         }
     }
 
@@ -1728,8 +1761,7 @@ public final class Check {
     public static void containsExactOneNotNull(final Object value1, final Object value2, final Object... values) {
         Check.containsExactOneNotNull(null, value1, value2, values);
     }
-    
-    
+
     /**
      * Check that all elements of an argument colletiona are unique with respect to the equals checker.
      * @param message a message if the check fails
@@ -1737,8 +1769,8 @@ public final class Check {
      * @param equalsChecker used to check the equality between two elements.
      * @param argumentName the name of the argument
      */
-    public static <T> void uniqueElementsArgument(final Collection<T> collection, final EqualsChecker<T, T> equalsChecker,
-            final String argumentName) {
+    public static <T> void uniqueElementsArgument(final Collection<T> collection,
+            final EqualsChecker<T, T> equalsChecker, final String argumentName) {
         Check.notNullArgument(collection, "collection");
         Check.notNullArgument(equalsChecker, "equalsChecker");
         Check.notNullArgument(argumentName, "argumentName");
@@ -1750,9 +1782,12 @@ public final class Check {
             for (int k = i + 1; k < size; k++) {
                 T elementK = elements.get(k);
                 if (equalsChecker.equals(elementI, elementK)) {
-                   
+
                     IllegalArgumentException illegalArgExc = new IllegalArgumentException(
-                            "[Assertion failed] - collection on argument <code>" + argumentName + "</code> has not unique element -  two (or more) elements are equals with respect to an equals definition - equals element[" + i + "]: " + elementI + ", equals element[" + k + "]: " + elementK + ", collection=" + collection); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
+                            "[Assertion failed] - collection on argument <code>" + argumentName //$NON-NLS-1$
+                                    + "</code> has not unique element -  two (or more) elements are equals with respect to an equals definition - equals element[" //$NON-NLS-1$
+                                    + i + "]: " + elementI + ", equals element[" + k + "]: " + elementK //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+                                    + ", collection=" + collection);
                     if (Check.activeArgumentCheck) {
                         throw illegalArgExc;
                     } else {
@@ -1762,31 +1797,30 @@ public final class Check {
             }
         }
     }
-    
+
     /**
      * Check that all elements of an argument colletions are unique with respect to the equals checker.
      * @param message a message if the check fails 
      * @param equalsChecker used to check the equality between two elements.
      * @param argumentName the name of the argument
      */
-    public static <T> void uniqueElementsArgument(final Collection<T> collection,
-            final String argumentName) {
+    public static <T> void uniqueElementsArgument(final Collection<T> collection, final String argumentName) {
         Check.notNullArgument(collection, "collection");
         Check.notNullArgument(argumentName, "argumentName");
-        
-        uniqueElementsArgument(collection, NativeEqualsChecker.<T>getInstance(),argumentName);
+
+        uniqueElementsArgument(collection, NativeEqualsChecker.<T> getInstance(), argumentName);
     }
-    
+
     /**
      * Check that all elements are unique with respect to the equals checker.
      * @param message a message if the check fails
      * @param elements the list of proven elements 
      * @param equalsChecker used to check the equality between two elements.
      */
-    public static <T> void uniqueElements(final String message, final Collection<T> collection, final EqualsChecker<T, T> equalsChecker) {
+    public static <T> void uniqueElements(final String message, final Collection<T> collection,
+            final EqualsChecker<T, T> equalsChecker) {
         Check.notNullArgument(collection, "collection");
         Check.notNullArgument(equalsChecker, "equalsChecker");
-        
 
         List<T> elements = new ArrayList<T>(collection);
         int size = elements.size();
@@ -1794,13 +1828,16 @@ public final class Check {
             T elementI = elements.get(i);
             for (int k = i + 1; k < size; k++) {
                 T elementK = elements.get(k);
-                if (equalsChecker.equals(elementI, elementK)) {                 
-                    Check.fail(Check.format(message, "[Assertion failed] - collection has not unique element -  two (or more) elements are equals with respect to an equals definition - equals element[" + i + "]: " + elementI + ", equals element[" + k + "]: " + elementK + ", collection=" + collection));
+                if (equalsChecker.equals(elementI, elementK)) {
+                    Check.fail(Check.format(message,
+                            "[Assertion failed] - collection has not unique element -  two (or more) elements are equals with respect to an equals definition - equals element["
+                                    + i + "]: " + elementI + ", equals element[" + k + "]: " + elementK
+                                    + ", collection=" + collection));
                 }
             }
         }
     }
-    
+
     /**
      * Check that all elements are unique with respect to the equals checker.
      * @param message a message if the check fails
@@ -1810,21 +1847,21 @@ public final class Check {
     public static <T> void uniqueElements(final Collection<T> collection, final EqualsChecker<T, T> equalsChecker) {
         Check.notNullArgument(collection, "collection");
         Check.notNullArgument(equalsChecker, "equalsChecker");
-        
+
         uniqueElements(null, collection, equalsChecker);
     }
-    
+
     /**
      * Check that all elements are unique.
      * @param message a message if the check fails
      * @param elements the list of proven elements 
      */
     public static <T> void uniqueElements(final String message, final Collection<T> collection) {
-        Check.notNullArgument(collection, "collection");        
-        
-        uniqueElements(null, collection, NativeEqualsChecker.<T>getInstance());
+        Check.notNullArgument(collection, "collection");
+
+        uniqueElements(null, collection, NativeEqualsChecker.<T> getInstance());
     }
-    
+
     /**
      * Check that all elements are unique.
      * @param message a message if the check fails
@@ -1832,12 +1869,9 @@ public final class Check {
      */
     public static <T> void uniqueElements(final Collection<T> collection) {
         Check.notNullArgument(collection, "collection");
-        
+
         uniqueElements(null, collection);
     }
-    
-   
-        
 
     /**
      * Fails a test with the given message.
