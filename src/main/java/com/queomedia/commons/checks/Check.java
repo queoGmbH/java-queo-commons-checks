@@ -153,16 +153,11 @@ public final class Check {
 
     /**
      * Checks for (not) empty String argument.
-     * 
-     * @param argument
-     *            the argument
-     * @param argumentName
-     *            the argument name
-     * 
-     * @throws ArgumentNullException
-     *             if the argument is null
-     * @throws IllegalArgumentException
-     *             if the argument is empty
+     *
+     * @param argument            the argument
+     * @param argumentName            the argument name
+     * @throws IllegalArgumentException             if the argument is empty
+     * @throws ArgumentNullException             if the argument is null
      */
     public static void notEmptyArgument(final String argument, final String argumentName)
             throws IllegalArgumentException {
@@ -182,16 +177,11 @@ public final class Check {
 
     /**
      * Checks for (not) empty Collection argument.
-     * 
-     * @param argument
-     *            the argument
-     * @param argumentName
-     *            the argument name
-     * 
-     * @throws ArgumentNullException
-     *             if the argument is null
-     * @throws IllegalArgumentException
-     *             if the argument is empty
+     *
+     * @param argument            the argument
+     * @param argumentName            the argument name
+     * @throws IllegalArgumentException             if the argument is empty
+     * @throws ArgumentNullException             if the argument is null
      */
     public static void notEmptyArgument(final Collection<?> argument, final String argumentName)
             throws IllegalArgumentException {
@@ -211,14 +201,11 @@ public final class Check {
 
     /**
      * Argument instance of.
-     * 
-     * @param type
-     *            the type
-     * @param argumentName
-     *            the argument name
-     * @param argument
-     *            the argument
-     * 
+     *
+     * @param <T> the generic type
+     * @param argument            the argument
+     * @param type            the type
+     * @param argumentName            the argument name
      * @return the T
      */
     @SuppressWarnings("unchecked")
@@ -369,12 +356,11 @@ public final class Check {
     }
 
     /**
-     * Not zero.
-     * 
-     * @param value
-     *            the value
-     * @param argumentName
-     *            the argument name
+     * Not zero argument.
+     *
+     * @param value the value
+     * @param epsylon the epsylon
+     * @param argumentName the argument name
      */
     public static void notZeroArgument(final double value, final double epsylon, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
@@ -454,15 +440,11 @@ public final class Check {
 
     /**
      * Checks if is equals.
-     * 
-     * @param valueB
-     *            value of argument a
-     * @param valueA
-     *            value of argument b
-     * @param argumentNameA
-     *            the name of argument a
-     * @param argumentNameB
-     *            the name of argument b
+     *
+     * @param valueA            value of argument b
+     * @param valueB            value of argument a
+     * @param argumentNameA            the name of argument a
+     * @param argumentNameB            the name of argument b
      */
     public static void equalArguments(final Object valueA, final Object valueB, final String argumentNameA,
             final String argumentNameB) {
@@ -495,15 +477,11 @@ public final class Check {
 
     /**
      * Checks if is equals.
-     * 
-     * @param valueB
-     *            value of argument a
-     * @param valueA
-     *            value of argument b
-     * @param argumentNameA
-     *            the name of argument a
-     * @param argumentNameB
-     *            the name of argument b
+     *
+     * @param valueA            value of argument b
+     * @param valueB            value of argument a
+     * @param argumentNameA            the name of argument a
+     * @param argumentNameB            the name of argument b
      */
     public static void equalArguments(final int valueA, final int valueB, final String argumentNameA,
             final String argumentNameB) {
@@ -523,7 +501,7 @@ public final class Check {
 
     /**
      * Checks that the value of an integer is between a minimal or a maximal
-     * value (min <= value <= max).
+     * value (min &lt;= value &lt;= max).
      * 
      * @param value
      *            the value to check
@@ -596,13 +574,10 @@ public final class Check {
 
     /**
      * Checks that the value of an double is greater or equals a minimal value.
-     * 
-     * @param argumentValue
-     *            the value to check
-     * @param min
-     *            the minimal allowed value
-     * @param argumentName
-     *            the name of the argument.
+     *
+     * @param min            the minimal allowed value
+     * @param argumentValue            the value to check
+     * @param argumentName            the name of the argument.
      */
     public static void argumentGreaterEquals(final int min, final int argumentValue, final String argumentName) {
         /**
@@ -623,13 +598,10 @@ public final class Check {
 
     /**
      * Checks that the value of an double is greater or equals a minimal value.
-     * 
-     * @param argumentValue
-     *            the value to check
-     * @param min
-     *            the minimal allowed value
-     * @param argumentName
-     *            the name of the argument.
+     *
+     * @param min            the minimal allowed value
+     * @param argumentValue            the value to check
+     * @param argumentName            the name of the argument.
      */
     public static void argumentGreaterEquals(final long min, final long argumentValue, final String argumentName) {
         /**
@@ -651,13 +623,10 @@ public final class Check {
     /**
      * Checks that the value of an double is greater or equals a minimal double
      * value.
-     * 
-     * @param argumentValue
-     *            the value to check
-     * @param min
-     *            the minimal allowed value
-     * @param argumentName
-     *            the name of the argument.
+     *
+     * @param min            the minimal allowed value
+     * @param argumentValue            the value to check
+     * @param argumentName            the name of the argument.
      */
     public static void argumentGreaterEquals(final double min, final double argumentValue, final String argumentName) {
         /**
@@ -678,13 +647,10 @@ public final class Check {
 
     /**
      * Checks that the value of an double is less or equals a maximal value.
-     * 
-     * @param argumentValue
-     *            the value to check
-     * @param may
-     *            the maximla allowed value
-     * @param argumentName
-     *            the name of the argument.
+     *
+     * @param max the max
+     * @param argumentValue            the value to check
+     * @param argumentName            the name of the argument.
      */
     public static void argumentLessEquals(final int max, final double argumentValue, final String argumentName) {
         /**
@@ -704,8 +670,7 @@ public final class Check {
     }
 
     /**
-     * Assert that exactly {@codenumberNotNullExpected} number of parameters a
-     * not null.
+     * Assert that exactly {@code numberNotNullExpected} number of parameters and not null.
      * 
      * @param numberNotNullExpected
      *            the number not null expected
@@ -773,15 +738,12 @@ public final class Check {
     /**
      * Check the assert that both collections has the same size and are not
      * null.
-     * 
-     * @param collectionA
-     *            the collection a
-     * @param collectionB
-     *            the collection b
-     * @param argumentNameA
-     *            the argument name a
-     * @param argumentNameB
-     *            the argument name b
+     *
+     * @param <T> the generic type
+     * @param arrayA the array A
+     * @param arrayB the array B
+     * @param argumentNameA            the argument name a
+     * @param argumentNameB            the argument name b
      */
     public static <T> void sameSizeArgument(final T[] arrayA, final T[] arrayB, final String argumentNameA,
             final String argumentNameB) {
@@ -803,6 +765,13 @@ public final class Check {
         }
     }
 
+    /**
+     * Min one element argument.
+     *
+     * @param <T> the generic type
+     * @param array the array
+     * @param argumentName the argument name
+     */
     public static <T> void minOneElementArgument(final T[] array, final String argumentName) {
         Check.notNullArgument(array, argumentName);
         Check.notNullArgument(argumentName, "argumentName");
@@ -818,6 +787,13 @@ public final class Check {
         }
     }
 
+    /**
+     * Min one element argument.
+     *
+     * @param <T> the generic type
+     * @param collection the collection
+     * @param argumentName the argument name
+     */
     public static <T> void minOneElementArgument(final Collection<T> collection, final String argumentName) {
         Check.notNullArgument(collection, argumentName);
         Check.notNullArgument(argumentName, "argumentName");
@@ -837,13 +813,11 @@ public final class Check {
     /**
      * Make sure that the argument is equals to the expected object. If the
      * expected object is null then the argument have to be null too.
-     * 
-     * @param expected
-     *            the expected
-     * @param argument
-     *            the argument
-     * @param argumentName
-     *            the argument name
+     *
+     * @param <T> the generic type
+     * @param expected            the expected
+     * @param argument            the argument
+     * @param argumentName            the argument name
      */
     public static <T> void equalsArgument(final T expected, final T argument, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
@@ -868,13 +842,11 @@ public final class Check {
      * Make sure that the argument, if it is not null, is equals to the expected
      * object. If the expected object is null then the argument have to be null
      * too. If the argument is null, then this assertion is allways true.
-     * 
-     * @param expected
-     *            the expected
-     * @param argument
-     *            the argument
-     * @param argumentName
-     *            the argument name
+     *
+     * @param <T> the generic type
+     * @param expected            the expected
+     * @param argument            the argument
+     * @param argumentName            the argument name
      */
     public static <T> void equalsOrNullArgument(final T expected, final T argument, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
@@ -887,13 +859,11 @@ public final class Check {
     /**
      * Make sure that the argument is equals to the expected object. If the
      * expected object is null then the argument have to be null too.
-     * 
-     * @param expected
-     *            the expected
-     * @param argument
-     *            the argument
-     * @param argumentName
-     *            the argument name
+     *
+     * @param <T> the generic type
+     * @param expected            the expected
+     * @param argument            the argument
+     * @param argumentName            the argument name
      */
     public static <T> void equalsArgument(final boolean expected, final boolean argument, final String argumentName) {
         Check.notNullArgument(argumentName, "argumentName");
@@ -911,12 +881,10 @@ public final class Check {
 
     /**
      * Check that the collection is empty.
-     * 
-     * @param collection
-     *            the collection
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null}
+     * @param s the s
      */
     public static void isEmpty(final String message, final String s) {
         Check.notNullArgument(s, "s");
@@ -989,14 +957,11 @@ public final class Check {
 
     /**
      * Asserts that two Strings are equal if there whitespace are striped.
-     * 
-     * @param expected
-     *            the expected
-     * @param found
-     *            the found
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null} - can be null
+     * @param expected            the expected
+     * @param found            the found
      */
     public static void equalsWithoutWhitespace(final String message, final String expected, final String found) {
         Check.notNullArgument(expected, "expected");
@@ -1025,12 +990,10 @@ public final class Check {
 
     /**
      * Check that the collection is empty.
-     * 
-     * @param collection
-     *            the collection
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null}
+     * @param collection            the collection
      */
     public static void isEmpty(final String message, final Collection<?> collection) {
         Check.notNullArgument(collection, "collection");
@@ -1051,14 +1014,11 @@ public final class Check {
 
     /**
      * Checks for the correct size size.
-     * 
-     * @param expectedSize
-     *            the expected size
-     * @param foundCollection
-     *            the collection
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null}
+     * @param expectedSize            the expected size
+     * @param foundCollection            the collection
      */
     public static void hasSize(final String message, final int expectedSize, final Collection<?> foundCollection) {
         Check.notNullArgument(foundCollection, "collection");
@@ -1085,14 +1045,11 @@ public final class Check {
     /**
      * Checks for the correct size size. Checks for {@code foundCollection.size
      * >= minExpectedSize}
-     * 
-     * @param minExpectedSize
-     *            the minimal expected size (this value is allowed)
-     * @param foundCollection
-     *            the collection
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null}
+     * @param minExpectedSize            the minimal expected size (this value is allowed)
+     * @param foundCollection            the collection
      */
     public static void hasSizeAtLeast(final String message, final int minExpectedSize,
             final Collection<?> foundCollection) {
@@ -1120,14 +1077,13 @@ public final class Check {
 
     /**
      * Checks hat both collections have the same size.
-     * 
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param <T> the generic type
+     * @param <K> the key type
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null}
-     * @param expected
-     *            the expected collection (size)
-     * @param found
-     *            the found collection (size)
+     * @param expected            the expected collection (size)
+     * @param found            the found collection (size)
      */
     public static <T, K> void sameSize(final String message, final Collection<T> expected, final Collection<K> found) {
         Check.notNullArgument(expected, "expected");
@@ -1145,6 +1101,8 @@ public final class Check {
     /**
      * Checks hat both collections have the same size.
      * 
+     * @param <T> the generic type
+     * @param <K> the generic type
      * @param expected
      *            the expected collection (size)
      * @param found
@@ -1157,14 +1115,12 @@ public final class Check {
     /**
      * Check that the two collections contains exactly equals elements. The
      * order doesn't matter.
-     * 
-     * @param expected
-     *            one collection
-     * @param found
-     *            the other collection
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param <T> the generic type
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null}
+     * @param expected            one collection
+     * @param found            the other collection
      */
     public static <T> void containsExact(final String message, final Collection<? extends T> expected,
             final Collection<? extends T> found) {
@@ -1186,6 +1142,7 @@ public final class Check {
     /**
      * Contains exact.
      * 
+     * @param <T> the generic type
      * @param expected
      *            the expected
      * @param found
@@ -1197,14 +1154,12 @@ public final class Check {
 
     /**
      * Check that the collection contains exactly the one element.
-     * 
-     * @param expectedItem
-     *            the expected item can be {@code null}
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param <T> the generic type
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null}
-     * @param found
-     *            the found
+     * @param expectedItem            the expected item can be {@code null}
+     * @param found            the found
      */
     public static <T> void containsExact(final String message, final T expectedItem, final Collection<T> found) {
         /* expectedItem can be null */
@@ -1226,6 +1181,7 @@ public final class Check {
     /**
      * Contains exact.
      * 
+     * @param <T> the generic type
      * @param expectedItem
      *            the expected item can be {@code null}
      * @param found
@@ -1239,6 +1195,8 @@ public final class Check {
      * Check that the two collections contains equals (by a specific definition)
      * elements. The order doesn't matter.
      * 
+     * @param <T> the generic type
+     * @param <K> the generic type
      * @param message
      *            additional message for the failure description when the check
      *            fails - can be {@code null}
@@ -1277,6 +1235,8 @@ public final class Check {
      * Check that the two collections contains equals (by a specific definition)
      * elements. The order doesn't matter.
      * 
+     * @param <T> the generic type
+     * @param <K> the generic type
      * @param expected
      *            one collection
      * @param found
@@ -1292,16 +1252,14 @@ public final class Check {
     /**
      * Check that the two collections contains equals (by a specific definition)
      * elements. The order doesn't matter.
-     * 
-     * @param expectedObject
-     *            the expected object
-     * @param found
-     *            the found collection
-     * @param equalsChecker
-     *            the equals checker
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param <T> the generic type
+     * @param <K> the generic type
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null}
+     * @param expectedObject            the expected object
+     * @param found            the found collection
+     * @param equalsChecker            the equals checker
      */
     public static <T, K> void containsExact(final String message, final T expectedObject, final Collection<K> found,
             final EqualsChecker<T, K> equalsChecker) {
@@ -1320,6 +1278,8 @@ public final class Check {
      * Check that the two collections contains equals (by a specific definition)
      * elements. The order doesn't matter.
      * 
+     * @param <T> the generic type
+     * @param <K> the generic type
      * @param expectedObject
      *            the expected object
      * @param found
@@ -1335,14 +1295,12 @@ public final class Check {
     /**
      * Check that the two collections contains exactly equals elements in the
      * same order.
-     * 
-     * @param expected
-     *            one collection
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param <T> the generic type
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null}
-     * @param found
-     *            the found
+     * @param expected            one collection
+     * @param found            the found
      */
     public static <T> void sameOrder(final String message, final List<T> expected, final List<T> found) {
         Check.notNullArgument(expected, "expected");
@@ -1365,6 +1323,7 @@ public final class Check {
      * Check that the two collections contains exactly equals elements in the
      * same order.
      * 
+     * @param <T> the generic type
      * @param expected
      *            one collection
      * @param found
@@ -1377,16 +1336,14 @@ public final class Check {
     /**
      * Check that the two collections contains exactly equals (by a specific
      * definition) elements in the same order.
-     * 
-     * @param expected
-     *            one collection
-     * @param equalsChecker
-     *            the equals definition
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param <T> the generic type
+     * @param <K> the generic type
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null}
-     * @param found
-     *            the found
+     * @param expected            one collection
+     * @param found            the found
+     * @param equalsChecker            the equals definition
      */
     public static <T, K> void sameOrder(final String message, final List<T> expected, final List<K> found,
             final EqualsChecker<T, K> equalsChecker) {
@@ -1418,13 +1375,12 @@ public final class Check {
     /**
      * Check that the two collections contains exactly equals (by a specific
      * definition) elements in the same order.
-     * 
-     * @param expected
-     *            one collection
-     * @param equalsChecker
-     *            the equals definition
-     * @param found
-     *            the found
+     *
+     * @param <T> the generic type
+     * @param <K> the generic type
+     * @param expected            one collection
+     * @param found            the found
+     * @param equalsChecker            the equals definition
      */
     public static <T, K> void sameOrder(final List<T> expected, final List<K> found,
             final EqualsChecker<T, K> equalsChecker) {
@@ -1436,6 +1392,8 @@ public final class Check {
      * specific definition) elements. The order doesn't matter. {@code found}
      * can have some more elements.
      * 
+     * @param <T> the generic type
+     * @param <K> the generic type
      * @param message
      *            additional message for the failure description when the check
      *            fails - can be {@code null}
@@ -1466,6 +1424,8 @@ public final class Check {
      * specific definition) elements. The order doesn't matter. {@code found}
      * can have some more elements.
      * 
+     * @param <T> the generic type
+     * @param <K> the generic type
      * @param expectedObject
      *            the expected object
      * @param found
@@ -1482,16 +1442,14 @@ public final class Check {
      * Check that the elements of expects are element of found too (by a
      * specific definition) elements. The order doesn't matter. {@code found}
      * can have some more elements.
-     * 
-     * @param expected
-     *            one collection
-     * @param equalsChecker
-     *            the specific equals definition
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param <T> the generic type
+     * @param <K> the generic type
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null}
-     * @param found
-     *            the found
+     * @param expected            one collection
+     * @param found            the found
+     * @param equalsChecker            the specific equals definition
      */
     public static <T, K> void containsAtLeast(final String message, final Collection<T> expected,
             final Collection<K> found, final EqualsChecker<T, K> equalsChecker) {
@@ -1508,13 +1466,12 @@ public final class Check {
      * Check that the elements of expects are element of found too (by a
      * specific definition) elements. The order doesn't matter. {@code found}
      * can have some more elements.
-     * 
-     * @param expected
-     *            one collection
-     * @param equalsChecker
-     *            the specific equals definition
-     * @param found
-     *            the found
+     *
+     * @param <T> the generic type
+     * @param <K> the generic type
+     * @param expected            one collection
+     * @param found            the found
+     * @param equalsChecker            the specific equals definition
      */
     public static <T, K> void containsAtLeast(final Collection<T> expected, final Collection<K> found,
             final EqualsChecker<T, K> equalsChecker) {
@@ -1524,14 +1481,12 @@ public final class Check {
     /**
      * Assert that the collection contains the item. The Collection can have
      * other items too.
-     * 
-     * @param expectedItem
-     *            the expected item
-     * @param found
-     *            the found
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param <T> the generic type
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null}
+     * @param expectedItem            the expected item
+     * @param found            the found
      */
     public static <T> void contains(final String message, final T expectedItem, final Collection<T> found) {
         Check.notNullArgument(found, "found");
@@ -1546,6 +1501,7 @@ public final class Check {
     /**
      * Contains.
      * 
+     * @param <T> the generic type
      * @param expectedItem
      *            the expected item
      * @param found
@@ -1558,11 +1514,10 @@ public final class Check {
     /**
      * Assert that the collection contains the expected items. The Collection
      * can have other items too.
-     * 
-     * @param found
-     *            the found
-     * @param expectedItems
-     *            the expected items
+     *
+     * @param <T> the generic type
+     * @param expectedItems            the expected items
+     * @param found            the found
      */
     public static <T> void contains(final Collection<T> expectedItems, final Collection<T> found) {
         Check.notNullArgument(expectedItems, "expectedItems");
@@ -1576,14 +1531,12 @@ public final class Check {
     /**
      * Assert that the collection does not contains the item. The Collection can
      * have other items.
-     * 
-     * @param notExpectedItem
-     *            the not expected item
-     * @param found
-     *            the found
-     * @param message
-     *            additional message for the failure description when the check
+     *
+     * @param <T> the generic type
+     * @param message            additional message for the failure description when the check
      *            fails - can be {@code null}
+     * @param notExpectedItem            the not expected item
+     * @param found            the found
      */
     public static <T> void containsNot(final String message, final T notExpectedItem, final Set<T> found) {
         Check.notNullArgument(found, "found");
@@ -1598,10 +1551,9 @@ public final class Check {
     /**
      * Contains not.
      * 
-     * @param notExpectedItem
-     *            the not expected item
-     * @param found
-     *            the found
+     * @param <T> the generic type
+     * @param notExpectedItem the not expected item
+     * @param found the found
      */
     public static <T> void containsNot(final T notExpectedItem, final Set<T> found) {
         Check.containsNot(null, notExpectedItem, found);
@@ -1764,8 +1716,9 @@ public final class Check {
 
     /**
      * Check that all elements of an argument colletiona are unique with respect to the equals checker.
-     * @param message a message if the check fails
-     * @param elements the list of proven elements 
+     * 
+     * @param <T> the generic type
+     * @param collection the collection of proven elements 
      * @param equalsChecker used to check the equality between two elements.
      * @param argumentName the name of the argument
      */
@@ -1799,9 +1752,10 @@ public final class Check {
     }
 
     /**
-     * Check that all elements of an argument colletions are unique with respect to the equals checker.
-     * @param message a message if the check fails 
-     * @param equalsChecker used to check the equality between two elements.
+     * Check that all elements of an argument collections are unique with respect to the equals checker.
+     * 
+     * @param <T> the generic type
+     * @param collection the collection of proven elements
      * @param argumentName the name of the argument
      */
     public static <T> void uniqueElementsArgument(final Collection<T> collection, final String argumentName) {
@@ -1813,8 +1767,10 @@ public final class Check {
 
     /**
      * Check that all elements are unique with respect to the equals checker.
+     * 
+     * @param <T> the generic type
      * @param message a message if the check fails
-     * @param elements the list of proven elements 
+     * @param collection the collection of proven elements 
      * @param equalsChecker used to check the equality between two elements.
      */
     public static <T> void uniqueElements(final String message, final Collection<T> collection,
@@ -1840,8 +1796,9 @@ public final class Check {
 
     /**
      * Check that all elements are unique with respect to the equals checker.
-     * @param message a message if the check fails
-     * @param elements the list of proven elements 
+     * 
+     * @param <T> the generic type
+     * @param collection the collection of proven elements 
      * @param equalsChecker used to check the equality between two elements.
      */
     public static <T> void uniqueElements(final Collection<T> collection, final EqualsChecker<T, T> equalsChecker) {
@@ -1853,8 +1810,10 @@ public final class Check {
 
     /**
      * Check that all elements are unique.
+     * 
+     * @param <T> the generic type
      * @param message a message if the check fails
-     * @param elements the list of proven elements 
+     * @param collection the collection of proven elements 
      */
     public static <T> void uniqueElements(final String message, final Collection<T> collection) {
         Check.notNullArgument(collection, "collection");
@@ -1864,8 +1823,9 @@ public final class Check {
 
     /**
      * Check that all elements are unique.
-     * @param message a message if the check fails
-     * @param elements the list of proven elements 
+     *
+     * @param <T> the generic type
+     * @param collection the collection of proven elements
      */
     public static <T> void uniqueElements(final Collection<T> collection) {
         Check.notNullArgument(collection, "collection");
