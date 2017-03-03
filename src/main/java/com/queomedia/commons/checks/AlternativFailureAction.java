@@ -8,14 +8,15 @@ package com.queomedia.commons.checks;
  *
  *
  */
+@Deprecated
 public enum AlternativFailureAction {
-    
+
     /** Do noting. */
     NONE,
-    
+
     /** Write a log statement. */
     LOG,
-    
+
     /** Write a statement to system.out */
     SYSTEM_OUT;
 
