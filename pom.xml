@@ -12,9 +12,14 @@
 	</issueManagement>
 
 	<scm>
-		<connection>scm:svn:https://code.dev.queo-group.com/svn/queo_commons/java//queo-commons-checks/trunk//queo-commons-checks</connection>
-		<developerConnection>scm:svn:https://code.dev.queo-group.com/svn/queo_commons/java//queo-commons-checks/trunk//queo-commons-checks</developerConnection>
-		<url>https://code.dev.queo-group.com/svn/queo_commons/java//queo-commons-checks/trunk//queo-commons-checks</url>
+		<!--
+			a typical git urls for a queo project is:
+			https://gitlab.cloud.queo.org/queo.software/java/commons/PROJECT-NAME.git
+		-->
+		<connection>scm:git:https://gitlab.cloud.queo.org/queo.software/java/commons/queo-commons-checks.git</connection>
+		<developerConnection>scm:git:git@gitlab.cloud.queo.org:7836/queo.software/java/commons/queo-commons-checks.git</developerConnection>
+		<url>https://gitlab.cloud.queo.org/queo.software/java/commons/queo-commons-checks</url>
+		<tag>HEAD</tag>
 	</scm>
 
 
