@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<groupId>com.queomedia</groupId>
-	<artifactId>queo-commons-checks</artifactId>
-	<name>queo commons check</name>
+	<artifactId>queo-commons-checks</artifactId>	
 	<version>1.2.2-SNAPSHOT</version>
+	
+	<name>queo commons check</name>
 	<description>Common utils to embedde checks like asserts within the code.</description>
+	
+	<inceptionYear>2009</inceptionYear>
+	
+	<organization>
+		<name>queo GmbH</name>
+		<url>https://www.queo.de</url>
+	</organization>
 
-	<issueManagement>
-		<system>mantis</system>
-		<url>http://mantistest.queo.local</url>
-	</issueManagement>
+	<developers>
+		<developer>
+			<organization>queo GmbH</organization>
+			<name>Ralph Engelmann</name>
+			<email>r.engelmann@queo-group.com</email>
+		</developer>
+	</developers>
+	
+	<licenses>
+		<license>
+			<name>Apache 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
 
 	<scm>
 		<!--
@@ -34,14 +55,7 @@
 			<url>https://nexus.dev.queo-group.com/repository/com.queomedia-snapshot/</url>
 		</snapshotRepository>
 	</distributionManagement>
-
-	<developers>
-		<developer>
-			<organization>queo</organization>
-			<name>Ralph Engelmann</name>
-			<email>ralph.engelmann@queo-media.com</email>
-		</developer>
-	</developers>
+	
 
 	<properties>
 	
