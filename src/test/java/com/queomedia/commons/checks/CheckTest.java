@@ -12,9 +12,6 @@ import com.queomedia.commons.exceptions.ConstraintViolationException;
 
 public class CheckTest {
 
-    /**
-     * Test method for {@link com.queomedia.util.asserts.Check#argumentInstanceOf(java.lang.Object, java.lang.Class, java.lang.String)}.
-     */
     @Test
     public void testArgumentInstanceOf_normal() {
 
@@ -24,17 +21,11 @@ public class CheckTest {
         Assert.assertSame(value, Check.argumentInstanceOf(value, BigInteger.class, "test2"));
     }
 
-    /**
-     * Test method for {@link com.queomedia.util.asserts.Check#argumentInstanceOf(java.lang.Object, java.lang.Class, java.lang.String)}.
-     */
     @Test(expected = IllegalArgumentException.class)
     public void testArgumentInstanceOf_normalFail() {
         Check.argumentInstanceOf(new Object(), Collection.class, "test1");
     }
 
-    /**
-     * Test method for {@link com.queomedia.util.asserts.Check#argumentInstanceOf(java.lang.Object, java.lang.Class, java.lang.String)}.
-     */
     @Test
     public void testArgumentInstanceOf_generics() {
         Object value = new ArrayList<BigInteger>(0);
