@@ -102,7 +102,7 @@ pipeline {
                     lib.printBuildResult()
                     try {
                        lib.publishToDos()
-                        lib.publishHtmlReports('target/checkout/target/staging/')
+                        //lib.publishHtmlReports('target/checkout/target/staging/') - disable because there is no 'maven site' stage that generate any html
                         lib.publishXunitReports()
                         lib.notifyViaMail()
                     } catch (exception) {
