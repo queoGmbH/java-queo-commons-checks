@@ -41,19 +41,6 @@
 		<tag>HEAD</tag>
 	</scm>
 
-
-	<distributionManagement>
-		<repository>
-			<id>com.queomedia</id>
-			<url>https://nexus.dev.queo-group.com/repository/com.queomedia/</url>
-		</repository>
-		<snapshotRepository>
-			<id>com.queomedia-snapshot</id>
-			<url>https://nexus.dev.queo-group.com/repository/com.queomedia-snapshot/</url>
-		</snapshotRepository>
-	</distributionManagement>
-	
-
 	<properties>
 	
 		<!-- still java 6, there is no need to require a newer version -->
