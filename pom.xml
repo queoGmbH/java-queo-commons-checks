@@ -9,7 +9,7 @@
 	<name>queo commons check</name>
 	<description>Common utils to embedde checks like asserts within the code.</description>
 	
-	<url>https://github.com/queoGmbH/queo-commons-checks</url>
+	<url>https://github.com/queoGmbH/java-queo-commons-checks</url>
 	<inceptionYear>2009</inceptionYear>
 	
 	<organization>
@@ -35,9 +35,9 @@
 	</licenses>
 
 	<scm>
-		<connection>scm:git:https://github.com/queoGmbH/queo-commons-checks.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/queoGmbH/queo-commons-checks.git</developerConnection>
-		<url>https://github.com/queoGmbH/queo-commons-checks</url>
+		<connection>scm:git:https://github.com/queoGmbH/java-queo-commons-checks.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/queoGmbH/java-queo-commons-checks.git</developerConnection>
+		<url>https://github.com/queoGmbH/java-queo-commons-checks</url>
 		<tag>HEAD</tag>
 	</scm>
 
