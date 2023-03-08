@@ -9,6 +9,7 @@
 	<name>queo commons check</name>
 	<description>Common utils to embedde checks like asserts within the code.</description>
 	
+	<url>https://github.com/queoGmbH/queo-commons-checks</url>
 	<inceptionYear>2009</inceptionYear>
 	
 	<organization>
@@ -34,13 +35,9 @@
 	</licenses>
 
 	<scm>
-		<!--
-			a typical git urls for a queo project is:
-			https://gitlab.cloud.queo.org/queo.software/java/commons/PROJECT-NAME.git
-		-->
-		<connection>scm:git:https://gitlab.cloud.queo.org/queo.software/java/commons/queo-commons-checks.git</connection>
-		<developerConnection>scm:git:ssh://git@gitlab.cloud.queo.org:7836/queo.software/java/commons/queo-commons-checks.git</developerConnection>
-		<url>https://gitlab.cloud.queo.org/queo.software/java/commons/queo-commons-checks</url>
+		<connection>scm:git:https://github.com/queoGmbH/queo-commons-checks.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/queoGmbH/queo-commons-checks.git</developerConnection>
+		<url>https://github.com/queoGmbH/queo-commons-checks</url>
 		<tag>HEAD</tag>
 	</scm>
 
